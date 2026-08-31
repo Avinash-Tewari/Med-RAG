@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedAdvisor — Doctor's Personal RAG Advisor</title>
+    <meta name="description" content="AI-powered medical document retrieval and reasoning platform for healthcare professionals.">
+    <link rel="icon" href="/favicon.ico" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- ── Ambient Background ────────────────────────────────────── -->
+    <div class="ambient-bg">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+    </div>
+
+    <!-- ── Main Layout ───────────────────────────────────────────── -->
+    <div class="app-layout">
+        <!-- ── Sidebar ───────────────────────────────────────────── -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <rect x="3" y="11" width="22" height="6" rx="1.5" fill="url(#logoGrad)"/>
+                            <rect x="11" y="3" width="6" height="22" rx="1.5" fill="url(#logoGrad)"/>
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28">
+                                    <stop stop-color="#34d399"/>
+                                    <stop offset="1" stop-color="#06b6d4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>MedAdvisor</h1>
+                        <span>Doctor's RAG Advisor</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="sidebar-section">
+                <h2 class="section-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    Upload Documents
+                </h2>
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="12" y1="18" x2="12" y2="12"/>
+                            <polyline points="9 15 12 12 15 15"/>
+                        </svg>
+                    </div>
+                    <p class="upload-text">Drop files here or <span class="upload-browse">browse</span></p>
+                    <p class="upload-hint">PDF, DOCX, TXT</p>
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.txt" multiple hidden>
+                </div>
+                <div class="upload-progress" id="uploadProgress" style="display:none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">Uploading...</p>
+                </div>
+            </div>
+
+            <!-- Document Library -->
+            <div class="sidebar-section">
+                <h2 class="section-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                    Document Library
+                    <span class="doc-count" id="docCount">0</span>
+                </h2>
+                <div class="doc-list" id="docList">
+                    <div class="doc-empty" id="docEmpty">
+                        <p>No documents uploaded yet.</p>
+                        <p class="hint">Upload medical documents to get started.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ── Main Content ──────────────────────────────────────── -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+                <div class="topbar-info">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Ready</span>
+                </div>
+            </header>
+
+            <!-- Chat Area -->
+            <div class="chat-area" id="chatArea">
+                <!-- Welcome Screen -->
+                <div class="welcome" id="welcomeScreen">
+                    <div class="welcome-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="url(#welcomeGrad)" stroke-width="1.2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            <defs>
+                                <linearGradient id="welcomeGrad" x1="2" y1="2" x2="22" y2="22">
+                                    <stop stop-color="#34d399"/>
+                                    <stop offset="1" stop-color="#06b6d4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h2>Welcome, Doctor</h2>
+                    <p>Upload medical documents and ask questions. I'll provide grounded, cited answers based strictly on your documents — no assumptions.</p>
+                    <div class="welcome-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">📄</div>
+                            <h3>Document Analysis</h3>
+                            <p>Upload PDFs, DOCX, or TXT medical reports</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3>Hybrid Retrieval</h3>
+                            <p>Semantic + keyword search for precise results</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🧠</div>
+                            <h3>Grounded Reasoning</h3>
+                            <p>Step-by-step logic with full citations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages Container -->
+                <div class="messages" id="messagesContainer"></div>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="input-bar">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="queryInput" 
+                        placeholder="Ask a question about your medical documents..." 
+                        rows="1"
+                        aria-label="Medical question input"
+                    ></textarea>
+                    <button class="send-btn" id="sendBtn" aria-label="Send question" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="input-disclaimer">MedAdvisor answers strictly from uploaded documents. Always verify with clinical judgement.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

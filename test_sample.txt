@@ -1,0 +1,47 @@
+CLINICAL GUIDELINES: MANAGEMENT OF TYPE 2 DIABETES MELLITUS
+
+1. DIAGNOSTIC CRITERIA
+Type 2 Diabetes Mellitus (T2DM) is diagnosed when any of the following criteria are met:
+- Fasting plasma glucose (FPG) >= 126 mg/dL (7.0 mmol/L)
+- 2-hour plasma glucose >= 200 mg/dL (11.1 mmol/L) during an oral glucose tolerance test (OGTT)
+- HbA1c >= 6.5% (48 mmol/mol)
+- Random plasma glucose >= 200 mg/dL (11.1 mmol/L) in a patient with classic symptoms of hyperglycemia
+
+2. FIRST-LINE TREATMENT
+Metformin is recommended as the first-line pharmacological therapy for T2DM:
+- Starting dose: 500 mg once or twice daily with meals
+- Maximum dose: 2000-2550 mg/day in divided doses
+- Contraindicated in patients with eGFR < 30 mL/min/1.73m2
+- Should be temporarily discontinued before iodinated contrast procedures
+- Common side effects: gastrointestinal symptoms (nausea, diarrhea, abdominal pain)
+- Reduces HbA1c by approximately 1.0-1.5%
+
+3. SECOND-LINE THERAPY OPTIONS
+If HbA1c target is not achieved with metformin monotherapy after 3-6 months, consider adding:
+- SGLT2 inhibitors (empagliflozin, dapagliflozin): Preferred in patients with heart failure or CKD
+- GLP-1 receptor agonists (liraglutide, semaglutide): Preferred in patients with established ASCVD
+- DPP-4 inhibitors (sitagliptin, linagliptin): When cost is a concern or patient prefers oral therapy
+- Sulfonylureas (glimepiride, gliclazide): Cost-effective but higher hypoglycemia risk
+- Insulin therapy: When HbA1c > 10% or symptomatic hyperglycemia
+
+4. MONITORING SCHEDULE
+- HbA1c: Every 3 months until at target, then every 6 months
+- Fasting lipid profile: Annually
+- Serum creatinine and eGFR: Annually (more frequent if CKD present)
+- Urine albumin-to-creatinine ratio (UACR): Annually
+- Comprehensive foot exam: Annually
+- Dilated eye exam: Annually or as recommended by ophthalmologist
+- Blood pressure: Every visit, target < 130/80 mmHg
+
+5. LIFESTYLE MODIFICATIONS
+- Medical nutrition therapy: Individualized meal planning with a registered dietitian
+- Physical activity: At least 150 minutes/week of moderate-intensity aerobic exercise
+- Weight management: 5-7% weight loss for overweight/obese patients
+- Smoking cessation: Strongly recommended for all patients
+- Alcohol: Limit to moderate consumption (1 drink/day for women, 2 for men)
+
+6. CARDIOVASCULAR RISK MANAGEMENT
+- Statin therapy: Moderate-intensity for all T2DM patients aged 40-75 years
+- Aspirin therapy: Consider low-dose (75-162 mg/day) for secondary prevention
+- Blood pressure management: ACE inhibitors or ARBs preferred, especially with albuminuria
+- Target LDL cholesterol: < 100 mg/dL (< 70 mg/dL if established ASCVD)

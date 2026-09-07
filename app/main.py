@@ -46,9 +46,12 @@ async def favicon():
 # ── Static frontend ────────────────────────────────────────────────────
 FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
-if FRONTEND_DIR.exists():
-    app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
+app.mount(
+    "/static",
+    StaticFiles(directory=str(FRONTEND_DIR)),
+    name="static"
+)
 
-    @app.get("/")
-    async def serve_frontend():
-        return FileResponse(str(FRONTEND_DIR / "index.html"))
+@app.get("/")
+async def serve_frontend():
+    return FileResponse(FRONTEND_DIR / "index.html")

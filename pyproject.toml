@@ -19,5 +19,4 @@ dependencies = [
     "python-dotenv>=1.0.0",
 ]
 
-[project.scripts]
-serve = "uvicorn app.main:app --reload --port 8000"
+
